@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +11,14 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             min-height: 100vh;
         }
-        
+
         /* Fixed header */
         header {
             position: fixed;
@@ -31,22 +32,22 @@
             padding: 1rem 1.5rem;
             z-index: 1000;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         header h1 {
             font-size: 2.5rem;
             font-weight: bold;
             letter-spacing: -0.025em;
         }
-        
+
         header h1 span {
             color: #60a5fa;
         }
-        
+
         /* Main content */
         main {
             padding-top: 6rem;
@@ -54,25 +55,25 @@
             padding-left: 1.5rem;
             padding-right: 1.5rem;
         }
-        
+
         .welcome {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
+
         .welcome h2 {
             font-size: 1.875rem;
             font-weight: 500;
             margin-bottom: 1rem;
         }
-        
+
         /* News cards */
         .news-container {
             display: flex;
             flex-direction: column;
             gap: 2rem;
         }
-        
+
         .news-card {
             background-color: rgba(15, 23, 42, 0.5);
             border: 1px solid #374151;
@@ -81,18 +82,18 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .news-card:hover {
             border-color: rgba(96, 165, 250, 0.5);
         }
-        
+
         .news-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
         }
-        
+
         .placeholder-image {
             width: 6rem;
             height: 6rem;
@@ -103,26 +104,26 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .placeholder-image div {
             width: 5rem;
             height: 5rem;
             background-color: #374151;
             border-radius: 0.25rem;
         }
-        
+
         .news-card h3 {
             font-size: 1.5rem;
             font-weight: bold;
             text-align: center;
         }
-        
+
         .news-date {
             color: #9ca3af;
             font-size: 0.875rem;
             text-align: center;
         }
-        
+
         /* Modal */
         .modal-overlay {
             position: fixed;
@@ -139,7 +140,7 @@
             z-index: 2000;
             padding: 1rem;
         }
-        
+
         .modal-content {
             background-color: #111827;
             border: 1px solid #374151;
@@ -149,6 +150,7 @@
             max-height: 80vh;
             overflow-y: auto;
         }
+
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -156,12 +158,12 @@
             padding: 1.5rem;
             border-bottom: 1px solid #374151;
         }
-        
+
         .modal-header h3 {
             font-size: 1.875rem;
             font-weight: bold;
         }
-        
+
         .close-modal {
             background: none;
             border: none;
@@ -176,54 +178,55 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .close-modal:hover {
             color: white;
         }
-        
+
         .modal-body {
             padding: 0 1.5rem 1.5rem 1.5rem;
         }
-        
+
         .modal-date {
             color: #9ca3af;
             font-size: 0.875rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .modal-image {
             display: flex;
             justify-content: center;
             margin-bottom: 1.5rem;
         }
-        
+
         .modal-image .placeholder-image {
             width: 8rem;
             height: 8rem;
         }
-        
+
         .modal-image .placeholder-image div {
             width: 7rem;
             height: 7rem;
         }
-        
+
         .modal-content p {
             color: #d1d5db;
             line-height: 1.625;
         }
-        
+
         /* Responsive */
         @media (min-width: 768px) {
             header h1 {
                 font-size: 3rem;
             }
-            
+
             .welcome h2 {
                 font-size: 2.25rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Fixed header -->
     <header>
@@ -281,11 +284,11 @@
         ];
         // Generate news cards
         const newsContainer = document.getElementById('newsContainer');
-        
+
         newsItems.forEach(item => {
             const card = document.createElement('div');
             card.className = 'news-card';
-            card.innerHTML = 
+            card.innerHTML =
                 <div class="news-content">
                     <div class="placeholder-image">
                         <div></div>
@@ -293,8 +296,8 @@
                     <h3>${item.title}</h3>
                     <p class="news-date">${item.date}</p>
                 </div>
-            ;
-            
+                ;
+
             card.addEventListener('click', () => openModal(item));
             newsContainer.appendChild(card);
         });
@@ -303,7 +306,7 @@
         function openModal(newsItem) {
             const modal = document.createElement('div');
             modal.className = 'modal-overlay';
-            modal.innerHTML = 
+            modal.innerHTML =
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3>${newsItem.title}</h3>
@@ -319,16 +322,16 @@
                         <p>${newsItem.content}</p>
                     </div>
                 </div>
-            ;
-            
+                ;
+
             document.body.appendChild(modal);
-            
+
             // Close modal
             const closeModalBtn = modal.querySelector('.close-modal');
             closeModalBtn.addEventListener('click', () => {
                 document.body.removeChild(modal);
             });
-            
+
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     document.body.removeChild(modal);
@@ -337,4 +340,5 @@
         }
     </script>
 </body>
+
 </html>
