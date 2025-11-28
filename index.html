@@ -1,11 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Стенгазета 9А класса</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        
+        /* Fixed header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #374151;
+            padding: 1rem 1.5rem;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: -0.025em;
+        }
+        
+        header h1 span {
+            color: #60a5fa;
+        }
+        
+        /* Main content */
+        main {
+            padding-top: 6rem;
+            padding-bottom: 3rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        
+        .welcome {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .welcome h2 {
+            font-size: 1.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        /* News cards */
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .news-card {
+            background-color: rgba(15, 23, 42, 0.5);
+            border: 1px solid #374151;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+        
+        .news-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .placeholder-image {
+            width: 6rem;
+            height: 6rem;
+            background-color: #1f2937;
+            border: 2px dashed #4b5563;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .placeholder-image div {
+            width: 5rem;
+            height: 5rem;
+            background-color: #374151;
+            border-radius: 0.25rem;
+        }
+        
+        .news-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .news-date {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            background-color: #111827;
+            border: 1px solid #374151;
+            border-radius: 0.75rem;
+            max-width: 56rem;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border-bottom: 1px solid #374151;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.875rem;
+            font-weight: bold;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal:hover {
+            color: white;
+        }
+        
+        .modal-body {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+        
+        .modal-date {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-image {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-image .placeholder-image {
+            width: 8rem;
+            height: 8rem;
+        }
+        
+        .modal-image .placeholder-image div {
+            width: 7rem;
+            height: 7rem;
+        }
+        
+        .modal-content p {
+            color: #d1d5db;
+            line-height: 1.625;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            header h1 {
+                font-size: 3rem;
+            }
+            
+            .welcome h2 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    Hello world!
+    <!-- Fixed header -->
+    <header>
+        <div class="container">
+            <h1>Стенгазета <span>9А</span> класса</h1>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <div class="container">
+            <div class="welcome">
+                <h2>Добро пожаловать на нашу школьную стенгазету!</h2>
+            </div>
+
+            <div class="news-container" id="newsContainer">
+                <!-- News cards will be generated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // News data
+        const newsItems = [
+            {
+                id: 1,
+                title: "Новость 1",
+                content: "Здесь будет интересная информация о жизни нашего класса и школы. Подробное описание события, которое произошло недавно и вызвало большой интерес у учеников и учителей.",
+                date: "28 ноября 2025"
+            },
+            {
+                id: 2,
+                title: "Новость 2",
+                content: "Здесь будет интересная информация о жизни нашего класса и школы. Рассказ о школьных мероприятиях, конкурсах и достижениях наших учеников.",
+                date: "27 ноября 2025"
+            },
+            {
+                id: 3,
+                title: "Новость 3",
+                content: "Здесь будет интересная информация о жизни нашего класса и школы. Информация о предстоящих событиях и важных объявлениях для родителей и учеников.",
+                date: "26 ноября 2025"
+            },
+            {
+                id: 4,
+                title: "Новость 4",
+                content: "Здесь будет интересная информация о жизни нашего класса и школы. Интересные факты из школьной жизни и достижения наших талантливых учеников.",
+                date: "25 ноября 2025"
+            },
+            {
+                id: 5,
+                title: "Новость 5",
+                content: "Здесь будет интересная информация о жизни нашего класса и школы. Поздравления с праздниками и важные даты в жизни нашего школьного сообщества.",
+                date: "24 ноября 2025"
+            }
+        ];
+        // Generate news cards
+        const newsContainer = document.getElementById('newsContainer');
+        
+        newsItems.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.innerHTML = 
+                <div class="news-content">
+                    <div class="placeholder-image">
+                        <div></div>
+                    </div>
+                    <h3>${item.title}</h3>
+                    <p class="news-date">${item.date}</p>
+                </div>
+            ;
+            
+            card.addEventListener('click', () => openModal(item));
+            newsContainer.appendChild(card);
+        });
+
+        // Modal functions
+        function openModal(newsItem) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = 
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${newsItem.title}</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-date">${newsItem.date}</p>
+                        <div class="modal-image">
+                            <div class="placeholder-image">
+                                <div></div>
+                            </div>
+                        </div>
+                        <p>${newsItem.content}</p>
+                    </div>
+                </div>
+            ;
+            
+            document.body.appendChild(modal);
+            
+            // Close modal
+            const closeModalBtn = modal.querySelector('.close-modal');
+            closeModalBtn.addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
