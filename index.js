@@ -6,12 +6,6 @@ document.querySelectorAll('.news-card').forEach(card => {
     });
 });
 
-// Закрытие модального окна новости
-document.querySelectorAll('dialog.modal button[class="close-btn"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-        btn.closest('dialog').close();
-    });
-});
 
 document.querySelectorAll('dialog.modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
