@@ -10,7 +10,75 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" media="print"
           onload="this.media='all'"/>
-    <link rel="stylesheet" href="index.css"/>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 12px 0;
+            text-align: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 80px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .news-card:hover {
+            background: rgba(50, 50, 50, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .news-card h3 {
+            margin: 0 0 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+        }
+
+        .news-card p {
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+    </style>
+    <link rel="stylesheet" href="index.css" media="print" onload="this.media='all'"/>
     <script src="index.js" defer></script>
 </head>
 
