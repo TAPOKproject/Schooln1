@@ -8,8 +8,9 @@
     <title>Стенгазета 9А класса</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" media="print" onload="this.media='all'"
-          rel="stylesheet"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          onload="this.rel='stylesheet'" rel="preload"/>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"></noscript>
     <style>
         * {
             box-sizing: border-box;
@@ -78,7 +79,8 @@
             line-height: 1.4;
         }
     </style>
-    <link href="index.css" media="print" onload="this.media='all'" rel="stylesheet"/>
+    <link as="style" href="index.css" onload="this.rel='stylesheet'" rel="preload"/>
+    <noscript><link rel="stylesheet" href="index.css"></noscript>
     <script defer src="index.js"></script>
 </head>
 
